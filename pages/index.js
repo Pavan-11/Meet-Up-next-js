@@ -1,4 +1,5 @@
 
+
 import MeetupList from "../components/meetups/MeetupList";
 
 
@@ -19,8 +20,18 @@ const DUMMY_MEETUPS = [
         description: 'This is a second meet up!'
     },
 ]
-function MeetUp() {
-    return <MeetupList meetups={DUMMY_MEETUPS} />
+function HomePage(props) {
+    
+    return <MeetupList meetups={props.meetups} />
 }
 
-export default MeetUp;
+export async function getStaticProps() {
+    return {
+        props : {
+            meetups : DUMMY_MEETUPS
+        },
+        revalidate : 10  
+    };
+};
+
+export default HomePage;
